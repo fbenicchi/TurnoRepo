@@ -1,0 +1,1979 @@
+{
+	"info": {
+		"_postman_id": "26ae8ad6-7986-44ba-9ec2-9eb18a54aa97",
+		"name": "Biglietteria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "32188309-26ae8ad6-7986-44ba-9ec2-9eb18a54aa97"
+	},
+	"item": [
+		{
+			"name": "Gestione Turno",
+			"item": [
+				{
+					"name": "Apertura Turno",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c861df23-da2e-4cb2-a1b0-2ba364c5b671",
+								"exec": [
+									"pm.test('Expected response to have status code 200', () => {",
+									"    pm.expect(pm.response).to.have.status(200);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"pm.test(\"Expected response to be an object\", function () {",
+									"    pm.expect(jsonData).to.be.an('object');",
+									"});",
+									"",
+									"const schema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"workshiftId\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"dateOpen\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"dateClose\": {",
+									"      \"type\": \"null\"",
+									"    },",
+									"    \"description\": {",
+									"      \"type\": \"null\"",
+									"    },",
+									"    \"source\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"workstationUpdate\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"operatorUpdate\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"dateRecordedAtTime\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"Accesslogs\": {",
+									"      \"type\": \"array\",",
+									"      \"items\": [",
+									"        {",
+									"          \"type\": \"object\",",
+									"          \"properties\": {",
+									"            \"logId\": {",
+									"              \"type\": \"string\"",
+									"            },",
+									"            \"dateTimeAccess\": {",
+									"              \"type\": \"string\"",
+									"            },",
+									"            \"workshiftId\": {",
+									"              \"type\": \"string\"",
+									"            },",
+									"            \"resourceId\": {",
+									"              \"type\": \"string\"",
+									"            },",
+									"            \"resourceTypeCode\": {",
+									"              \"type\": \"string\"",
+									"            },",
+									"            \"resourceDsc\": {",
+									"              \"type\": \"string\"",
+									"            },",
+									"            \"resourceImpersonatingId\": {",
+									"              \"type\": \"string\"",
+									"            },",
+									"            \"resourceImpersonatingTypeCode\": {",
+									"              \"type\": \"null\"",
+									"            },",
+									"            \"resourceImpersonatingDsc\": {",
+									"              \"type\": \"string\"",
+									"            },",
+									"            \"deviceId\": {",
+									"              \"type\": \"string\"",
+									"            },",
+									"            \"deviceType\": {",
+									"              \"type\": \"null\"",
+									"            },",
+									"            \"activity\": {",
+									"              \"type\": \"string\"",
+									"            },",
+									"            \"touchpointId\": {",
+									"              \"type\": \"string\"",
+									"            },",
+									"            \"dateRecordedAtTime\": {",
+									"              \"type\": \"string\"",
+									"            },",
+									"            \"accesslogCode\": {",
+									"              \"type\": \"string\"",
+									"            }",
+									"          },",
+									"          \"required\": [",
+									"            \"logId\",",
+									"            \"dateTimeAccess\",",
+									"            \"workshiftId\",",
+									"            \"resourceId\",",
+									"            \"resourceTypeCode\",",
+									"            \"resourceDsc\",",
+									"            \"resourceImpersonatingId\",",
+									"            \"resourceImpersonatingTypeCode\",",
+									"            \"resourceImpersonatingDsc\",",
+									"            \"deviceId\",",
+									"            \"deviceType\",",
+									"            \"activity\",",
+									"            \"touchpointId\",",
+									"            \"dateRecordedAtTime\",",
+									"            \"accesslogCode\"",
+									"          ]",
+									"        }",
+									"      ]",
+									"    },",
+									"    \"fareFrame\": {",
+									"      \"type\": \"object\",",
+									"      \"properties\": {",
+									"        \"fareFrameId\": {",
+									"          \"type\": \"string\"",
+									"        },",
+									"        \"fareFrameName\": {",
+									"          \"type\": \"null\"",
+									"        },",
+									"        \"organisations\": {",
+									"          \"type\": \"null\"",
+									"        }",
+									"      },",
+									"      \"required\": [",
+									"        \"fareFrameId\",",
+									"        \"fareFrameName\",",
+									"        \"organisations\"",
+									"      ]",
+									"    }",
+									"  },",
+									"  \"required\": [",
+									"    \"workshiftId\",",
+									"    \"dateOpen\",",
+									"    \"dateClose\",",
+									"    \"description\",",
+									"    \"source\",",
+									"    \"workstationUpdate\",",
+									"    \"operatorUpdate\",",
+									"    \"dateRecordedAtTime\",",
+									"    \"Accesslogs\",",
+									"    \"fareFrame\"",
+									"  ]",
+									"};",
+									"pm.test(\"Validate Schema\", function() {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"pm.collectionVariables.set(\"workshiftId\",jsonData.workshiftId);",
+									"pm.collectionVariables.set(\"resourceId\", jsonData.Accesslogs[0].resourceId);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ac9850c5-90fc-4413-bb3e-d50c21a24892",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "4c5140d4-9e88-47ca-bdd8-5df878624965",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							},
+							{
+								"key": "X-WTF-PROFILE",
+								"value": "{{profile}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"source\": \"{{$randomJobArea}}\",\n    \"resourceId\": \"SN{{$randomBitcoin}}\",\n    \"resourceTypeCode\": \"user\",\n    \"touchpointId\": \"{{$randomColor}}\",\n    \"deviceId\": \"{{$randomCity}}{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingId\": \"resourceTypeCode{{$randomAlphaNumeric}}\",\n    \"resourceDsc\": \"resourceDsc{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingDsc\": \"resourceImpersonatingDsc{{$randomAlphaNumeric}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlColA}}/v1/workshift",
+							"host": [
+								"{{baseUrlColA}}"
+							],
+							"path": [
+								"v1",
+								"workshift"
+							]
+						},
+						"description": "\n<i>DESCRIPTION</i> \n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+					},
+					"response": [
+						{
+							"id": "fb80f7de-89c0-41f7-886a-a613a7058088",
+							"name": "WorkShift created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"source\": \"{{$randomJobArea}}\",\n    \"resourceId\": \"SN{{$randomBitcoin}}\",\n    \"resourceTypeCode\": \"user\",\n    \"touchpointId\": \"{{$randomColor}}\",\n    \"deviceId\": \"{{$randomCity}}{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingId\": \"resourceTypeCode{{$randomAlphaNumeric}}\",\n    \"resourceDsc\": \"resourceDsc{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingDsc\": \"resourceImpersonatingDsc{{$randomAlphaNumeric}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift"
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i> \n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "0968eb69-7059-4c88-91fe-2735dae9f05c"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"workshiftId\": \"<uuid>\",\n    \"dateOpen\": \"<dateTime>\",\n    \"dateClose\": \"<dateTime>\",\n    \"description\": \"<string>\",\n    \"source\": \"<string>\",\n    \"accessLogs\": [\n        {\n            \"logId\": \"<uuid>\",\n            \"accesslogCode\": \"<string>\",\n            \"dateTimeAccess\": \"<dateTime>\",\n            \"workshiftId\": \"<uuid>\",\n            \"resourceId\": \"<string>\",\n            \"resourceTypeCode\": \"<string>\",\n            \"resourceDsc\": \"<string>\",\n            \"resourceImpersonatingId\": \"<string>\",\n            \"resourceImpersonatingTypeCode\": \"<string>\",\n            \"resourceImpersonatingDsc\": \"<string>\",\n            \"deviceId\": \"<string>\",\n            \"deviceType\": \"<string>\",\n            \"activity\": \"<string>\",\n            \"touchpointId\": \"<string>\",\n            \"dateRecordedAtTime\": \"<dateTime>\"\n        },\n        {\n            \"logId\": \"<uuid>\",\n            \"accesslogCode\": \"<string>\",\n            \"dateTimeAccess\": \"<dateTime>\",\n            \"workshiftId\": \"<uuid>\",\n            \"resourceId\": \"<string>\",\n            \"resourceTypeCode\": \"<string>\",\n            \"resourceDsc\": \"<string>\",\n            \"resourceImpersonatingId\": \"<string>\",\n            \"resourceImpersonatingTypeCode\": \"<string>\",\n            \"resourceImpersonatingDsc\": \"<string>\",\n            \"deviceId\": \"<string>\",\n            \"deviceType\": \"<string>\",\n            \"activity\": \"<string>\",\n            \"touchpointId\": \"<string>\",\n            \"dateRecordedAtTime\": \"<dateTime>\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "71b1a650-c0e0-42a0-ab44-cfa32a2ed177",
+							"name": "The request was invalid or cannot be otherwise served",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"source\": \"{{$randomJobArea}}\",\n    \"resourceId\": \"SN{{$randomBitcoin}}\",\n    \"resourceTypeCode\": \"user\",\n    \"touchpointId\": \"{{$randomColor}}\",\n    \"deviceId\": \"{{$randomCity}}{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingId\": \"resourceTypeCode{{$randomAlphaNumeric}}\",\n    \"resourceDsc\": \"resourceDsc{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingDsc\": \"resourceImpersonatingDsc{{$randomAlphaNumeric}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift"
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i> \n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "08f27fce-a9ab-4fd8-85a0-3aae2a92d604"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "60f104ed-a6c8-4fb1-81c4-453e3287a5c5",
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"source\": \"{{$randomJobArea}}\",\n    \"resourceId\": \"SN{{$randomBitcoin}}\",\n    \"resourceTypeCode\": \"user\",\n    \"touchpointId\": \"{{$randomColor}}\",\n    \"deviceId\": \"{{$randomCity}}{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingId\": \"resourceTypeCode{{$randomAlphaNumeric}}\",\n    \"resourceDsc\": \"resourceDsc{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingDsc\": \"resourceImpersonatingDsc{{$randomAlphaNumeric}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift"
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i> \n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "2261990c-dc54-4148-87fc-5528b65e2851"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "58dd49c7-f00e-497d-80b6-deb6d31bcf27",
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"source\": \"{{$randomJobArea}}\",\n    \"resourceId\": \"SN{{$randomBitcoin}}\",\n    \"resourceTypeCode\": \"user\",\n    \"touchpointId\": \"{{$randomColor}}\",\n    \"deviceId\": \"{{$randomCity}}{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingId\": \"resourceTypeCode{{$randomAlphaNumeric}}\",\n    \"resourceDsc\": \"resourceDsc{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingDsc\": \"resourceImpersonatingDsc{{$randomAlphaNumeric}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift"
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i> \n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "a15b8097-ad91-4867-b38e-ae281a931c26"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "90462d7f-d172-4c62-b040-e5f1dbd0d706",
+							"name": "The URI requested is invalid or the resource requested does not exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"source\": \"{{$randomJobArea}}\",\n    \"resourceId\": \"SN{{$randomBitcoin}}\",\n    \"resourceTypeCode\": \"user\",\n    \"touchpointId\": \"{{$randomColor}}\",\n    \"deviceId\": \"{{$randomCity}}{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingId\": \"resourceTypeCode{{$randomAlphaNumeric}}\",\n    \"resourceDsc\": \"resourceDsc{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingDsc\": \"resourceImpersonatingDsc{{$randomAlphaNumeric}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift"
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i> \n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "296de75f-dd6a-4ccf-a1e0-4751d9ce2c3c"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "0e1dedb1-436f-46cb-95d9-1fe68297418b",
+							"name": "Something is broken",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"source\": \"{{$randomJobArea}}\",\n    \"resourceId\": \"SN{{$randomBitcoin}}\",\n    \"resourceTypeCode\": \"user\",\n    \"touchpointId\": \"{{$randomColor}}\",\n    \"deviceId\": \"{{$randomCity}}{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingId\": \"resourceTypeCode{{$randomAlphaNumeric}}\",\n    \"resourceDsc\": \"resourceDsc{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingDsc\": \"resourceImpersonatingDsc{{$randomAlphaNumeric}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift"
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i> \n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "cd23aac6-7c56-4004-ab1c-355f15217ece"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "7e3ae203-f31c-4cf0-943f-de0aa427c7e4",
+							"name": "Not implemented",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"source\": \"{{$randomJobArea}}\",\n    \"resourceId\": \"SN{{$randomBitcoin}}\",\n    \"resourceTypeCode\": \"user\",\n    \"touchpointId\": \"{{$randomColor}}\",\n    \"deviceId\": \"{{$randomCity}}{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingId\": \"resourceTypeCode{{$randomAlphaNumeric}}\",\n    \"resourceDsc\": \"resourceDsc{{$randomAlphaNumeric}}\",\n    \"resourceImpersonatingDsc\": \"resourceImpersonatingDsc{{$randomAlphaNumeric}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift"
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i> \n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Not Implemented",
+							"code": 501,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "e3d84220-2b35-4855-b6cf-95fb096ee8e8"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						}
+					]
+				},
+				{
+					"name": "Info Stato Turno",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "104a2930-71ce-4ab2-b35d-0ad4e7c0335c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "0d25f635-eae3-4fc6-b12b-34dbcf99f516",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							},
+							{
+								"key": "X-WTF-PROFILE",
+								"value": "{{profile}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrlColA}}/v1/workshift/:resourceId",
+							"host": [
+								"{{baseUrlColA}}"
+							],
+							"path": [
+								"v1",
+								"workshift",
+								":resourceId"
+							],
+							"variable": [
+								{
+									"key": "resourceId",
+									"value": "{{resourceId}}",
+									"description": "(Required) Resource unique identifier"
+								}
+							]
+						},
+						"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+					},
+					"response": [
+						{
+							"id": "2e9f9024-ea42-48e1-8b6f-86662c59ef2b",
+							"name": "Opened WorkShift found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "f5f9e6fe-299b-45ce-a837-502c77321874"
+								}
+							],
+							"cookie": [],
+							"body": "{\n\t\"workshiftId\": \"<uuid>\",\n\t\"dateOpen\": \"<dateTime>\",\n\t\"dateClose\": \"<dateTime>\",\n\t\"description\": \"<string>\",\n\t\"source\": \"<string>\",\n\t\"accessLogs\": [\n\t\t{\n\t\t\t\"logId\": \"<uuid>\",\n\t\t\t\"accesslogCode\": \"<string>\",\n\t\t\t\"dateTimeAccess\": \"<dateTime>\",\n\t\t\t\"workshiftId\": \"<uuid>\",\n\t\t\t\"resourceId\": \"<string>\",\n\t\t\t\"resourceTypeCode\": \"<string>\",\n\t\t\t\"resourceDsc\": \"<string>\",\n\t\t\t\"resourceImpersonatingId\": \"<string>\",\n\t\t\t\"resourceImpersonatingTypeCode\": \"<string>\",\n\t\t\t\"resourceImpersonatingDsc\": \"<string>\",\n\t\t\t\"deviceId\": \"<string>\",\n\t\t\t\"deviceType\": \"<string>\",\n\t\t\t\"activity\": \"<string>\",\n\t\t\t\"touchpointId\": \"<string>\",\n\t\t\t\"dateRecordedAtTime\": \"<dateTime>\"\n\t\t},\n\t\t{\n\t\t\t\"logId\": \"<uuid>\",\n\t\t\t\"accesslogCode\": \"<string>\",\n\t\t\t\"dateTimeAccess\": \"<dateTime>\",\n\t\t\t\"workshiftId\": \"<uuid>\",\n\t\t\t\"resourceId\": \"<string>\",\n\t\t\t\"resourceTypeCode\": \"<string>\",\n\t\t\t\"resourceDsc\": \"<string>\",\n\t\t\t\"resourceImpersonatingId\": \"<string>\",\n\t\t\t\"resourceImpersonatingTypeCode\": \"<string>\",\n\t\t\t\"resourceImpersonatingDsc\": \"<string>\",\n\t\t\t\"deviceId\": \"<string>\",\n\t\t\t\"deviceType\": \"<string>\",\n\t\t\t\"activity\": \"<string>\",\n\t\t\t\"touchpointId\": \"<string>\",\n\t\t\t\"dateRecordedAtTime\": \"<dateTime>\"\n\t\t}\n\t]\n}"
+						},
+						{
+							"id": "7fdca6a2-104c-4dda-88bc-bbed66de6554",
+							"name": "The request was invalid or cannot be otherwise served",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "faa0f35d-2489-4937-9627-d4ec3d59fe3b"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "eed90a53-9ac2-44f3-936e-78d030add836",
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "58b3a847-f430-44ec-ae64-af4754b8963c"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "db5ddd34-4c02-44c9-a91d-82e708a2a27e",
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "70d114d0-94a9-4d67-b243-04220a0174af"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "39d545f9-516b-41da-b48a-1ed55e642934",
+							"name": "The URI requested is invalid or the resource requested does not exists",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "7801e138-a93d-4479-8b87-942fe7144402"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "f68de806-91f5-4905-bd1f-114196500743",
+							"name": "Something is broken",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "80029f8e-bb35-4d5c-9c8b-e206c5d68f52"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "c2708a16-b3ec-4568-b171-f77db9042339",
+							"name": "Not implemented",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Not Implemented",
+							"code": 501,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "a4b5687c-16fd-4182-a716-a43934e3595e"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						}
+					]
+				},
+				{
+					"name": "Seleziona Id Turno",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d74f9fc5-d3c3-4c35-ad6a-76e63c38ccf4",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an object with workshiftId property\", function () {\r",
+									"    pm.expect(pm.response.json()).to.be.an('object').that.has.property('workshiftId');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "32339df5-8e22-49fe-a3f4-f109c2bebabd",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "a6a798af-94a1-46e4-b581-a59c0d552551",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							},
+							{
+								"key": "X-WTF-PROFILE",
+								"value": "{{profile}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrlColA}}/v1/workshift/:resourceId/lastworkshift",
+							"host": [
+								"{{baseUrlColA}}"
+							],
+							"path": [
+								"v1",
+								"workshift",
+								":resourceId",
+								"lastworkshift"
+							],
+							"variable": [
+								{
+									"key": "resourceId",
+									"value": "{{resourceId}}",
+									"description": "(Required) Resource unique identifier"
+								}
+							]
+						},
+						"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+					},
+					"response": [
+						{
+							"id": "55942f46-deb1-4b7c-9da5-2088f5fd4d7f",
+							"name": "Last workshiftId found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId/lastworkshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId",
+										"lastworkshift"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "24a7c3f7-79b2-477b-951f-0141b4706c79"
+								}
+							],
+							"cookie": [],
+							"body": "{\n\t\"workshiftId\": \"<uuid>\"\n}"
+						},
+						{
+							"id": "5c62aaaf-8db3-4f65-ac15-35e9b7265042",
+							"name": "The request was invalid or cannot be otherwise served",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId/lastworkshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId",
+										"lastworkshift"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "bbf02074-c9f4-4d1b-9698-221339c422e1"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "dc553a25-becb-40e9-b11d-b23d91de9833",
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId/lastworkshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId",
+										"lastworkshift"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "4ffba701-7450-4e8d-a621-6263e243bf81"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "29426a86-6186-451f-8c39-a80fb4cebd5d",
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId/lastworkshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId",
+										"lastworkshift"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "81f3c007-3980-4227-8871-7b87452bd17f"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "bb2a995a-8319-40c2-943d-395a71c51338",
+							"name": "The URI requested is invalid or the resource requested does not exists",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId/lastworkshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId",
+										"lastworkshift"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "f099cf03-d36e-44e0-98d5-efa460ab08b0"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "205d0da7-15c3-4b0b-9126-f9b8ff50baa9",
+							"name": "Something is broken",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId/lastworkshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId",
+										"lastworkshift"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "08d0c73d-94f1-49d2-a666-3b49f3909bd6"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						},
+						{
+							"id": "a12001ce-89af-4004-9f7d-319a5b0636a2",
+							"name": "Not implemented",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:resourceId/lastworkshift",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":resourceId",
+										"lastworkshift"
+									],
+									"variable": [
+										{
+											"key": "resourceId",
+											"value": "{{resourceId}}",
+											"description": "(Required) Resource unique identifier"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "Not Implemented",
+							"code": 501,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "bc627a7c-2ddc-4a39-9d83-b9902464cffb"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t},\n\t{\n\t\t\"code\": \"<string>\",\n\t\t\"message\": \"<string>\",\n\t\t\"details\": \"<string>\"\n\t}\n]"
+						}
+					]
+				},
+				{
+					"name": "Riassegna Turno Aperto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e569a2a6-aaff-4bd4-ae96-5d13d0c2597b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"// Test for response schema\r",
+									"pm.test(\"Schema is valid\", function () {\r",
+									"  var schema = {\r",
+									"    type: \"object\",\r",
+									"    properties: {\r",
+									"      workshiftId: { type: \"string\" },\r",
+									"      dateOpen: { type: \"string\" },\r",
+									"      dateClose: { anyOf: [{ type: \"string\" }, { type: \"null\" }] },\r",
+									"      description: { anyOf: [{ type: \"string\" }, { type: \"null\" }] },\r",
+									"      source: { type: \"string\" },\r",
+									"      Accesslogs: {\r",
+									"        type: \"array\",\r",
+									"        items: {\r",
+									"          type: \"object\",\r",
+									"          properties: {\r",
+									"            logId: { type: \"string\" },\r",
+									"            accesslogCode: { type: \"string\" },\r",
+									"            dateTimeAccess: { type: \"string\" },\r",
+									"            workshiftId: { type: \"string\" },\r",
+									"            resourceId: { type: \"string\" },\r",
+									"            resourceTypeCode: { type: \"string\" },\r",
+									"            resourceDsc: { type: \"string\" },\r",
+									"            resourceImpersonatingId: { type: [\"string\", \"null\"] },\r",
+									"            resourceImpersonatingTypeCode: { anyOf: [{ type: \"string\" }, { type: \"null\" }] },\r",
+									"            resourceImpersonatingDsc: { type: \"string\" },\r",
+									"            deviceId: { type: [\"string\", \"null\"] },\r",
+									"            deviceType: { anyOf: [{ type: \"string\" }, { type: \"null\" }] },\r",
+									"            activity: { type: \"string\" },\r",
+									"            touchpointId: { type: \"string\" },\r",
+									"            dateRecordedAtTime: { type: \"string\" }\r",
+									"          },\r",
+									"          required: [\"logId\", \"accesslogCode\", \"dateTimeAccess\", \"workshiftId\", \"resourceId\", \"resourceTypeCode\", \"resourceDsc\", \"resourceImpersonatingId\", \"resourceImpersonatingTypeCode\", \"resourceImpersonatingDsc\", \"deviceId\", \"deviceType\", \"activity\", \"touchpointId\", \"dateRecordedAtTime\"]\r",
+									"        }\r",
+									"      }\r",
+									"    },\r",
+									"    required: [\"workshiftId\", \"dateOpen\", \"dateClose\", \"description\", \"source\", \"Accesslogs\"]\r",
+									"  };\r",
+									"\r",
+									"  var response = pm.response.json();\r",
+									"  pm.expect(tv4.validate(response, schema)).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "26b88aaa-a9fa-4cc6-8c4f-053e86fe21c6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							},
+							{
+								"key": "X-WTF-PROFILE",
+								"value": "{{profile}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"deviceId\": \"{{$randomCity}}{{$randomAlphaNumeric}}\",\n    \"touchpointId\": \"{{$randomColor}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlColA}}/v1/workshift/:workshiftId/reactivate",
+							"host": [
+								"{{baseUrlColA}}"
+							],
+							"path": [
+								"v1",
+								"workshift",
+								":workshiftId",
+								"reactivate"
+							],
+							"variable": [
+								{
+									"key": "workshiftId",
+									"value": "{{workshiftId}}",
+									"description": "(Required) "
+								}
+							]
+						},
+						"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+					},
+					"response": [
+						{
+							"id": "fe0f195b-61e3-4ba7-8b9e-3492eec9a08c",
+							"name": "Opened WorkShift found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceId\": \"{{$randomCity}}{{$randomAlphaNumeric}}\",\n    \"touchpointId\": \"{{$randomColor}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:workshiftId/reactivate",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":workshiftId",
+										"reactivate"
+									],
+									"variable": [
+										{
+											"key": "workshiftId",
+											"value": "{{workshiftId}}",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "3271ea96-f23a-4653-8b4d-05db6a63f0a3"
+								}
+							],
+							"cookie": [],
+							"body": "{\n\t\"workshiftId\": \"<uuid>\",\n\t\"dateOpen\": \"<dateTime>\",\n\t\"dateClose\": \"<dateTime>\",\n\t\"description\": \"<string>\",\n\t\"source\": \"<string>\",\n\t\"accessLogs\": [\n\t\t{\n\t\t\t\"logId\": \"<uuid>\",\n\t\t\t\"accesslogCode\": \"<string>\",\n\t\t\t\"dateTimeAccess\": \"<dateTime>\",\n\t\t\t\"workshiftId\": \"<uuid>\",\n\t\t\t\"resourceId\": \"<string>\",\n\t\t\t\"resourceTypeCode\": \"<string>\",\n\t\t\t\"resourceDsc\": \"<string>\",\n\t\t\t\"resourceImpersonatingId\": \"<string>\",\n\t\t\t\"resourceImpersonatingTypeCode\": \"<string>\",\n\t\t\t\"resourceImpersonatingDsc\": \"<string>\",\n\t\t\t\"deviceId\": \"<string>\",\n\t\t\t\"deviceType\": \"<string>\",\n\t\t\t\"activity\": \"<string>\",\n\t\t\t\"touchpointId\": \"<string>\",\n\t\t\t\"dateRecordedAtTime\": \"<dateTime>\"\n\t\t},\n\t\t{\n\t\t\t\"logId\": \"<uuid>\",\n\t\t\t\"accesslogCode\": \"<string>\",\n\t\t\t\"dateTimeAccess\": \"<dateTime>\",\n\t\t\t\"workshiftId\": \"<uuid>\",\n\t\t\t\"resourceId\": \"<string>\",\n\t\t\t\"resourceTypeCode\": \"<string>\",\n\t\t\t\"resourceDsc\": \"<string>\",\n\t\t\t\"resourceImpersonatingId\": \"<string>\",\n\t\t\t\"resourceImpersonatingTypeCode\": \"<string>\",\n\t\t\t\"resourceImpersonatingDsc\": \"<string>\",\n\t\t\t\"deviceId\": \"<string>\",\n\t\t\t\"deviceType\": \"<string>\",\n\t\t\t\"activity\": \"<string>\",\n\t\t\t\"touchpointId\": \"<string>\",\n\t\t\t\"dateRecordedAtTime\": \"<dateTime>\"\n\t\t}\n\t]\n}"
+						}
+					]
+				},
+				{
+					"name": "Chiudi Turno",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eeb19e94-7904-45b7-8261-ef6b894ead62",
+								"exec": [
+									"pm.test('Expected response to have status code 200', () => {",
+									"    pm.expect(pm.response).to.have.status(200);",
+									"})",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test('Expected response to be an object', function () {",
+									"    pm.expect(jsonData).to.be.an('object');",
+									"})",
+									"",
+									"const schema = {",
+									"    'type': 'object',",
+									"    'properties': {",
+									"        'workshiftId': { 'type': 'string' },",
+									"        'dateOpen': { 'type': 'string' },",
+									"        'dateClose': { 'type': 'string' },",
+									"        'description': { 'type': 'null' },",
+									"        'source': { 'type': 'string' },",
+									"        'workstationUpdate': { 'type': 'string' },",
+									"        'operatorUpdate': { 'type': 'string' },",
+									"        'dateRecordedAtTime': { 'type': 'string' },",
+									"        'Accesslogs': {",
+									"            'type': 'array',",
+									"            'items': [{",
+									"                    'type': 'object',",
+									"                    'properties': {",
+									"                        'logId': { 'type': 'string' },",
+									"                        'dateTimeAccess': { 'type': 'string' },",
+									"                        'workshiftId': { 'type': 'string' },",
+									"                        'resourceId': { 'type': 'string' },",
+									"                        'resourceTypeCode': { 'type': 'string' },",
+									"                        'resourceDsc': { 'type': 'string' },",
+									"                        'resourceImpersonatingId': { 'type': 'string' },",
+									"                        'resourceImpersonatingTypeCode': { 'type': 'null' },",
+									"                        'resourceImpersonatingDsc': { 'type': 'string' },",
+									"                        'deviceId': { 'type': 'string' },",
+									"                        'deviceType': { 'type': 'null' },",
+									"                        'activity': { 'type': 'string' },",
+									"                        'touchpointId': { 'type': 'string' },",
+									"                        'dateRecordedAtTime': { 'type': 'string' },",
+									"                        'accesslogCode': { 'type': 'string' }",
+									"                    },",
+									"                    'required': [",
+									"                        'logId',",
+									"                        'dateTimeAccess',",
+									"                        'workshiftId',",
+									"                        'resourceId',",
+									"                        'resourceTypeCode',",
+									"                        'resourceDsc',",
+									"                        'resourceImpersonatingId',",
+									"                        'resourceImpersonatingTypeCode',",
+									"                        'resourceImpersonatingDsc',",
+									"                        'deviceId',",
+									"                        'deviceType',",
+									"                        'activity',",
+									"                        'touchpointId',",
+									"                        'dateRecordedAtTime',",
+									"                        'accesslogCode'",
+									"                    ]",
+									"                }]",
+									"        },",
+									"        'fareFrame': {",
+									"            'type': 'object',",
+									"            'properties': {",
+									"                'fareFrameId': { 'type': 'string' },",
+									"                'fareFrameName': {",
+									"                    'type': [",
+									"                        'string',",
+									"                        null",
+									"                    ]",
+									"                },",
+									"                'organisations': { 'type': 'array' }",
+									"            },",
+									"            'required': [",
+									"                'fareFrameId',",
+									"                'fareFrameName',",
+									"                'organisations'",
+									"            ]",
+									"        }",
+									"    },",
+									"    'required': [",
+									"        'workshiftId',",
+									"        'dateOpen',",
+									"        'dateClose',",
+									"        'description',",
+									"        'source',",
+									"        'workstationUpdate',",
+									"        'operatorUpdate',",
+									"        'dateRecordedAtTime',",
+									"        'Accesslogs',",
+									"        'fareFrame'",
+									"    ]",
+									"};",
+									"",
+									"pm.test(\"Validate Schema\", function() {",
+									"    schema.properties.fareFrame.properties.fareFrameName.type = [\"string\", \"null\"];",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "dfb0868b-3db1-4f18-a16b-dcb82fda0d2e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "02699544-47cc-4e8d-b2f7-70e64b3ccceb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							},
+							{
+								"key": "X-WTF-PROFILE",
+								"value": "{{profile}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrlColA}}/v1/workshift/:workshiftId",
+							"host": [
+								"{{baseUrlColA}}"
+							],
+							"path": [
+								"v1",
+								"workshift",
+								":workshiftId"
+							],
+							"variable": [
+								{
+									"key": "workshiftId",
+									"value": "{{workshiftId}}"
+								}
+							]
+						},
+						"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+					},
+					"response": [
+						{
+							"id": "de5ef352-feac-4e18-8a4e-608a6fafe848",
+							"name": "WorkShift closed",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									},
+									{
+										"key": "X-WTF-PROFILE",
+										"value": "{{profile}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlColA}}/v1/workshift/:workshiftId",
+									"host": [
+										"{{baseUrlColA}}"
+									],
+									"path": [
+										"v1",
+										"workshift",
+										":workshiftId"
+									],
+									"variable": [
+										{
+											"key": "workshiftId",
+											"value": "{{workshiftId}}"
+										}
+									]
+								},
+								"description": "\n<i>DESCRIPTION</i>\n\n<i>FLOW</i>\n\n<i>SPECIFICS AND CONTROLS</i>\n"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"uuid": "f2fde210-c52c-4c6e-ab05-578f4ef65325"
+								}
+							],
+							"cookie": [],
+							"body": "{\n\t\"workshiftId\": \"<uuid>\",\n\t\"dateOpen\": \"<dateTime>\",\n\t\"dateClose\": \"<dateTime>\",\n\t\"description\": \"<string>\",\n\t\"source\": \"<string>\",\n\t\"accessLogs\": [\n\t\t{\n\t\t\t\"logId\": \"<uuid>\",\n\t\t\t\"accesslogCode\": \"<string>\",\n\t\t\t\"dateTimeAccess\": \"<dateTime>\",\n\t\t\t\"workshiftId\": \"<uuid>\",\n\t\t\t\"resourceId\": \"<string>\",\n\t\t\t\"resourceTypeCode\": \"<string>\",\n\t\t\t\"resourceDsc\": \"<string>\",\n\t\t\t\"resourceImpersonatingId\": \"<string>\",\n\t\t\t\"resourceImpersonatingTypeCode\": \"<string>\",\n\t\t\t\"resourceImpersonatingDsc\": \"<string>\",\n\t\t\t\"deviceId\": \"<string>\",\n\t\t\t\"deviceType\": \"<string>\",\n\t\t\t\"activity\": \"<string>\",\n\t\t\t\"touchpointId\": \"<string>\",\n\t\t\t\"dateRecordedAtTime\": \"<dateTime>\"\n\t\t},\n\t\t{\n\t\t\t\"logId\": \"<uuid>\",\n\t\t\t\"accesslogCode\": \"<string>\",\n\t\t\t\"dateTimeAccess\": \"<dateTime>\",\n\t\t\t\"workshiftId\": \"<uuid>\",\n\t\t\t\"resourceId\": \"<string>\",\n\t\t\t\"resourceTypeCode\": \"<string>\",\n\t\t\t\"resourceDsc\": \"<string>\",\n\t\t\t\"resourceImpersonatingId\": \"<string>\",\n\t\t\t\"resourceImpersonatingTypeCode\": \"<string>\",\n\t\t\t\"resourceImpersonatingDsc\": \"<string>\",\n\t\t\t\"deviceId\": \"<string>\",\n\t\t\t\"deviceType\": \"<string>\",\n\t\t\t\"activity\": \"<string>\",\n\t\t\t\"touchpointId\": \"<string>\",\n\t\t\t\"dateRecordedAtTime\": \"<dateTime>\"\n\t\t}\n\t]\n}"
+						}
+					]
+				},
+				{
+					"name": "ClearVariables",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "10684b1f-32f2-4da1-9e50-a98ce6daddb4",
+								"exec": [
+									"pm.test(\"Response status code is 404\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(404);\r",
+									"});\r",
+									"pm.collectionVariables.unset(\"workshiftId\");\r",
+									"pm.collectionVariables.unset(\"resourceId\");\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "5859bb5a-4a2f-4ca7-9966-c61e54d3a57f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlColA}}/foo",
+							"host": [
+								"{{baseUrlColA}}"
+							],
+							"path": [
+								"foo"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "52ca01c3-67b4-405a-ad4f-ea720572eafd",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bffdba07-3f0b-470b-9623-b9f3deac846c",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "52bebfcf-42d5-475a-823e-f35aaa83b79e",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "accessTokenUrl",
+				"value": "{{baseUriOAuth}}/oauth2/token",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "{{Scope}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "Moovatest@01",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "SwQSA_test@carbon.super",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "4bCziGcEz1U308_0wlt4dC4EaM8a",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "cNEkZ4X40LFPtnqlMrLh0vw3owYa",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "password_credentials",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "TokenB",
+				"type": "string"
+			},
+			{
+				"key": "refreshRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "tokenRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "authRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://accounts.google.com/o/oauth2/v2/auth",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "79c7342f-e43e-4867-bfe6-7d93dbc7c53d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "42e82d66-6d8a-4c41-9bdf-ce1122e112c2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "7b583e7a-96cb-4f50-a660-53db8602b623",
+			"key": "profile",
+			"value": "automatedfarecollection.es.api.channel.integrator",
+			"type": "string"
+		}
+	]
+}
