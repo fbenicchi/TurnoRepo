@@ -1,0 +1,16 @@
+# Gitlab does not support Windows runners out of the box. Self hosted runners can be configured
+# by following https://docs.gitlab.com/runner/install/windows.html
+# Once this has been setup add the below step to your pipeline file to run automated tests using Postman CLI.
+
+stages:
+  - automated-api-tests
+
+automated-api-tests:
+  stage: automated-api-tests
+  before_script:
+    # Installing Postman CLI
+    - powershell.exe -NoProfile -InputFormat None -ExecutionPolicy AllSigned -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
+  script:
+    # Login using your Postman API keys
+    - postman login --with-api-key PMAK-664376cbfae37500014d2d06-e1b255173d23a10bb82abc855071d379ee
+    - postman collection run "${CI_PROJECT_DIR}/.github/TVM Ticket Vending Machine.json" -e "32034997-e028235f-a77b-440f-b519-926408a7d4b9"
